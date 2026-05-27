@@ -1,0 +1,4 @@
+# These are run/sourced under bash — keep LF so they work after a Windows clone.
+*.sh  text eol=lf
+*.env text eol=lf
+*.py  text eol=lf

@@ -1,0 +1,7 @@
+# Never share these — they are your private credentials.
+config.local.env
+config.env
+*.key
+*.pem
+*.pfx
+*.p12

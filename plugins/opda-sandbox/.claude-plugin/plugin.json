@@ -1,0 +1,11 @@
+{
+  "name": "opda-sandbox",
+  "displayName": "OPDA / PDTF Sandbox",
+  "description": "Onboard to the OPDA / PDTF property-data sandbox and pull its APIs with your own credentials. mTLS auth, Raidiam directory discovery, provenance-aware consumption.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Marc Hatton"
+  },
+  "homepage": "https://openpropdata.org.uk",
+  "keywords": ["opda", "pdtf", "property", "sandbox", "raidiam", "mtls"]
+}

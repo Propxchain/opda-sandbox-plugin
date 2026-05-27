@@ -1,0 +1,8 @@
+# Credentials — never committed. Recipients keep these in ~/.opda-sandbox/.
+config.local.env
+config.env
+*.key
+*.pem
+*.pfx
+*.p12
+.DS_Store

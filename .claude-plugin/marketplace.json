@@ -1,0 +1,14 @@
+{
+  "name": "propxchain-opda",
+  "owner": {
+    "name": "Marc Hatton (PropXchain)"
+  },
+  "description": "Tools for the OPDA / PDTF property-data sandbox.",
+  "plugins": [
+    {
+      "name": "opda-sandbox",
+      "source": "./plugins/opda-sandbox",
+      "description": "Onboard to the OPDA / PDTF sandbox and pull its APIs with your own credentials — mTLS auth, Raidiam directory discovery, provenance-aware consumption."
+    }
+  ]
+}
