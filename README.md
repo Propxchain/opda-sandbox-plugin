@@ -7,15 +7,13 @@ credentials — mTLS auth, Raidiam directory discovery, and provenance-aware con
 ## Install (Claude Code)
 
 ```
-/plugin marketplace add <your-github-owner>/opda-sandbox-plugin
+/plugin marketplace add Madhatt4/opda-sandbox-plugin
 /plugin install opda-sandbox@propxchain-opda
 ```
 
 Then, in any session: *"help me onboard to the OPDA sandbox"* — Claude loads the
 skill and walks you through it (placing certs, filling config, verifying, and
 making your first API pull).
-
-> Replace `<your-github-owner>` with the GitHub account this repo lives under.
 
 ## What you need first
 
