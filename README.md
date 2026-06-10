@@ -7,7 +7,7 @@ credentials — mTLS auth, Raidiam directory discovery, and provenance-aware con
 ## Install (Claude Code)
 
 ```
-/plugin marketplace add Madhatt4/opda-sandbox-plugin
+/plugin marketplace add Propxchain/opda-sandbox-plugin
 /plugin install opda-sandbox@propxchain-opda
 ```
 
