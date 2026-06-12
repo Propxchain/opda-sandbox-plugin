@@ -80,6 +80,9 @@ bash scripts/directory.sh endpoints
 | `no config found` | Create `~/.opda-sandbox/config.env` from `config.example.env`. |
 | `no token` / TLS errors | Wrong cert/key path, or your cert isn't active in the directory yet. |
 | `MISSING transport cert/key` | Paths in `config.env` don't match where you put the files. |
+| `403 IncompleteSignatureException` | **Not** a signature/server bug — an AWS API Gateway catch-all. Almost always the **wrong URL shape** or **wrong scope** for that endpoint. See "Government-data endpoints" in `SKILL.md` and use `gov-data.sh`. |
+| `401 missing_authorization` *with* a valid token | Right token, **wrong scope/aud** for that endpoint (e.g. OPDA government-data wants scope `land-registry`, not `government-data`). |
+| Endpoint needs `private_key_jwt` | Set `SIGNING_KEY`/`SIGNING_KID` in your config and add a SIGNING cert to your app. Your app must be registered with `token_endpoint_auth_method = private_key_jwt`. If it's a **federation-managed** app you can't change it after the fact (and org-admins can't unlock it) — just **create a new Application**, pick `private_key_jwt` at the final step, and give it its own signing + transport certs. |
 | Stuck getting credentials | OPDA / Raidiam support and the Friday tech drop-in can help. |
 
 **Windows users:** run the scripts from **WSL** or **Git Bash** (they need

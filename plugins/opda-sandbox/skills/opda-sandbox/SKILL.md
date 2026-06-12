@@ -54,6 +54,32 @@ catches this for you.
 | `token.sh [scope]` | Print a scoped access token. |
 | `directory.sh [orgId\|endpoints]` | List orgs / sweep live endpoints / one org's endpoints. |
 | `consume.sh <scope> <METHOD> <url> [body]` | Call any endpoint; surface JWS + provenance / verifiedClaims. |
+| `gov-data.sh <coalfield\|validate\|places\|register> <arg>` | One-shot consume of the OPDA **government-data** endpoints with the correct URL shape + scope baked in (see below). |
+
+## Government-data endpoints — the two things that cost everyone hours
+
+The OPDA `/v1/` government-data endpoints can throw a **misleading
+`403 IncompleteSignatureException`** — an AWS API Gateway catch-all that is **not** a
+signature or server problem. Two client-side fixes (both baked into `gov-data.sh`):
+
+1. **The URL shape differs per endpoint** — the wrong shape never matches a route, and
+   the gateway answers with that misleading error:
+   - `GET /v1/coalfield/{uprn}`                  ← UPRN in the **path**
+   - `GET /v1/uprn/validate/{uprn}`              ← UPRN in the **path**
+   - `GET /v1/places/find?query=<addr|postcode>` ← **`?query=`**, not `?uprn=` / not path
+   - `POST /opda/official-copies/v1/register-extract` (body `{messageId, titleNumber, titleKnownOfficialCopy{…}}`)
+2. **Scope is `land-registry`** for all of them — not `coalfield-data` / `government-data`.
+   Wrong scope → wrong token `aud` → `401 missing_authorization` / `403` at the edge.
+
+Plus: these endpoints require **`private_key_jwt`** auth — set `SIGNING_KEY`/`SIGNING_KID`
+in your config (see `config.example.env`). Each returns `{data, provenance{alg, kid,
+signature, signedAt}}`.
+
+```bash
+gov-data.sh coalfield <uprn>
+gov-data.sh validate  <uprn>
+gov-data.sh places    "<address or postcode>"
+```
 
 ## Security
 
